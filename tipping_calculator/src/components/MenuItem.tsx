@@ -2,13 +2,18 @@ import type { MenuItem } from "../types"
 
 type MenuItemProps = {
     item : MenuItem, 
+    addToOrder: (item: MenuItem) => void,
 }
 
-export default function MenuItem({item} : MenuItemProps) {
+export default function MenuItem({item, addToOrder} : MenuItemProps) {
     return (
-        <div key={item.id} className="flex justify-between">
+        <button 
+            className="border-2 border-teal-400 hover:bg-teal-200 w-full p-3 flex justify-between" 
+            key={item.id}
+            onClick={() => addToOrder(item)}
+        >
             <span>{item.name}</span>
-            <span>{item.price}</span>
-        </div>
+            <span className="font-black">${item.price}</span>
+        </button>
     )
 }
